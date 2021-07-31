@@ -19,25 +19,36 @@ function make_base()
 {
   base_image = new Image();
   //base_image.src = 'duck.png';
-  base_image.src = 'duck.png';
+  //base_image.src = 'duck.png';
+  base_image.src = 'red rectangle cropped.png';
+  context.translate(100,100);
   context.save();
   j = 0;
   
   base_image.onload = function(){
       rotation = 0;
-    for(var i = 0; i <= 4; i++){
+      //context.drawImage(base_image, 0, 0, 100, 100); //offsetx,y height x,y
+      
+    for(var i = 0; i <= 0; i++){
       for(var j = 0; j <= 4; j++){
         translateX = j*200;
         translateY = i*200;
-        context.translate(translateX,translateY);
+        /* draw, translate, rotate, translate back */
+        //context.translate(translateX,translateY);
+        context.translate(translateX + 100*.5,translateY+50*.5);
         context.rotate(rotation * Math.PI / 180);
-        context.drawImage(base_image, 0, 0, 100, 100); //offsetx,y height x,y
+        context.translate(-1*(translateX + 100*.5),-1*(translateY+50*.5));
+        context.drawImage(base_image, 0, 0, 100, 50); //offsetx,y height x,y
+        //context.fillText(j, 0, 0, 2000);
+        context.fillText(j, 0, 0);
         context.restore();
         context.save();
-        rotation += 20;
+        //rotation += 20;
+        rotation += 90;
         console.log(`rotation: ${rotation}`);
         console.log(`translateX: ${translateX}`);
         console.log(`translateY: ${translateY}`);
+        console.log(`j: ${j}`);
         console.log('---------------');
       }
     }
