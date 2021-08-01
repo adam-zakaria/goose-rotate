@@ -11,13 +11,25 @@ function make_base()
   base_image.src = 'red rectangle cropped.png';
   context.translate(100,100);
   context.save();
-  j = 0;
-  
+  rotate = 0;
   base_image.onload = function(){
-    context.draw_image(base_image, 0, 0, 100, 50);
-    context.translate(300 + 50, 300 + 25); //x + .5*width, y + .5*height
-    context.rotate((Math.PI / 180) * 25); // rotate
-    context.translate(-350, -325); //x + .5*width, y + .5*height
-    draw_image(base_image, 0, 0, 100, 50);
+    //context.fillStyle = '#0095DD';
+    for(i=0; i<=4; i++){
+      for(j=0; j<=4; j++){
+        startX = 200*i + 200;
+        startY = 200*j + 200;
+        rectWidth = 100;
+        rectHeight = 50;
+        rotate += 25;
+        context.translate(startX + .5*rectWidth, startY + .5*rectHeight); //x + .5*width, y + .5*height
+        context.rotate((Math.PI / 180) * rotate); // rotate
+        context.translate(-1 * (startX + .5*rectWidth), -1 * (startY + .5*rectHeight)); //x + .5*width, y + .5*height
+        //context.translate(-100, -75); //x + .5*width, y + .5*height
+        context.fillStyle = '#4D4E53';
+        context.fillRect(startX, startY, rectWidth, rectHeight);
+        context.restore();
+        context.save();
+      }
+    }
   }
 }
