@@ -5,3 +5,5 @@ red_rectange / other images might be problematic when rotated because they're no
 
 There's also this matter of rotating a shape around its own center.
 I think rotating around its top left corner works great though...
+
+Bella Canvas 3001
