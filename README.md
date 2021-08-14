@@ -1,3 +1,6 @@
+To run:
+node index.js
+
 rotate.js is a simple version of gen.js, to test things.
 
 red_rectange / other images might be problematic when rotated because they're not fully cropped.
@@ -14,3 +17,10 @@ Enter this in the console:
 var x, y; document.onmousemove=(e)=>{x=e.pageX;y=e.pageY;}
 Enter this in as a live expression:
 "("+x+", "+y+")"
+
+###
+To-do
+###
+*Apply filters to the geese
+    -glitch them?
+*Do the automatic spacing

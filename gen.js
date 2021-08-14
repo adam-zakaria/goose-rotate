@@ -1,7 +1,11 @@
-var canvas = document.getElementById('canvas'),
-context = canvas.getContext('2d');
+//var canvas = document.getElementById('canvas'),
+//context = canvas.getContext('2d');
 
-make_base();
+
+  $( function() {
+    $( "#slider" ).slider();
+  } );
+//make_base();
 
 function make_base()
 {
@@ -9,15 +13,24 @@ function make_base()
   base_image.src = 'goose.png';
   context.save();
   rotate = 0;
+  numElements = 7;
+  numRows = numElements;
+  numColumns = numElements;
+  //numRows = 4;
+  //numColumns = 4;
+  gapPlusWidth = 800/numElements;
+  width = gapPlusWidth * .5;
+  //width = 100 * base_image.height / base_image.width;
+  //height = 100;
   base_image.onload = function(){
-    for(i=0; i<=4; i++){
-      for(j=0; j<=4; j++){
-        startX = 200*j+20;
-        startY = 200*i+20;
-        width = 100 * base_image.height / base_image.width;
-        console.log(`width: ${width}`);
-        height = 100;
-        rotate += 30;
+    for(i=0; i<=numRows; i++){
+      for(j=0; j<=numColumns; j++){
+        //height = width * base_image.width / base_image.height; 
+        height = width * base_image.height / base_image.width; 
+        startX = gapPlusWidth*j+20;
+        startY = gapPlusWidth*i+20;
+        //rotate += 30;
+        rotate += Math.random()*360;
         context.translate(startX + .5*width, startY + .5*height); //x + .5*width, y + .5*height
         context.rotate((Math.PI / 180) * rotate); // rotate
         context.translate(-1 * (startX + .5*width), -1 * (startY + .5*height)); //x + .5*width, y + .5*height
@@ -28,5 +41,9 @@ function make_base()
         console.log(`startY = ${startY}`);
       }
     }
+    console.log(`height: ${height}`);
+    console.log(`width: ${width}`);
+    console.log(`width/height: ${width/height}`);
+    console.log(`gapPlusWidth: ${gapPlusWidth}`);
   }
 }
