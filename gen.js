@@ -1,11 +1,57 @@
-//var canvas = document.getElementById('canvas'),
-//context = canvas.getContext('2d');
+var canvas = document.getElementById('canvas'),
+context = canvas.getContext('2d');
 
+  //$("#slider").slider('option',{min: 0, max: 500});
+
+//make_base();
+display_image()
+var width=100;
+function display_image()
+{
 
   $( function() {
-    $( "#slider" ).slider();
+    var handle = $( "#custom-handle" );
+    $( "#slider" ).slider({
+      min: 100,
+      max: 500,
+      create: function() {
+        handle.text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        handle.text( ui.value );
+        //console.log(ui.value)
+        width = ui.value;
+        height = width * base_image.width / base_image.height; 
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(base_image, startX, startY, width, height); //void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
+      }
+    });
   } );
-//make_base();
+    setTimeout(function(){
+      width=$('#slider').slider("option", "value");
+    },200);
+
+  base_image = new Image();
+  base_image.src = 'goose.png';
+  startX=50;
+  startY=50;
+  height=100;
+  //width=100;
+  /*
+  while(){
+    //while slider does not exist, wait 1000ms to try slider option
+
+  }
+  */
+  //height = width * base_image.width / base_image.height; 
+  base_image.onload = function(){
+      context.drawImage(base_image, startX, startY, height, width);
+  }
+}
+
+
+
 
 function make_base()
 {
