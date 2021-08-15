@@ -53,23 +53,17 @@ function make_base()
   base_image.src = 'goose.png';
   context.save();
   rotate = 0;
-  numElements = 8;
-  numRows = numElements;
-  numColumns = numElements;
-  //numRows = 4;
-  //numColumns = 4;
-  gapPlusWidth = 800/numElements;
-  width = gapPlusWidth * .5;
-  //width = 100 * base_image.height / base_image.width;
-  //height = 100;
-  base_image.onload = function(){
+
+  function drawGrid(numElements){
+    numRows = numElements;
+    numColumns = numElements;
+    gapPlusWidth = 800/numElements;
+    width = gapPlusWidth * .5;
     for(i=0; i<=numRows; i++){
       for(j=0; j<=numColumns; j++){
-        //height = width * base_image.width / base_image.height; 
         height = width * base_image.height / base_image.width; 
         startX = gapPlusWidth*j+20;
         startY = gapPlusWidth*i+20;
-        //rotate += 30;
         rotate += Math.random()*360;
         context.translate(startX + .5*width, startY + .5*height); //x + .5*width, y + .5*height
         context.rotate((Math.PI / 180) * rotate); // rotate
@@ -85,5 +79,33 @@ function make_base()
     console.log(`width: ${width}`);
     console.log(`width/height: ${width/height}`);
     console.log(`gapPlusWidth: ${gapPlusWidth}`);
+  }
+
+  $( function() {
+    var handle = $( "#custom-handle" );
+    $( "#slider" ).slider({
+      min: 4,
+      max: 20,
+      create: function() {
+        handle.text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        handle.text( ui.value );
+        numElements = ui.value;
+        //width = ui.value;
+        //height = width * base_image.width / base_image.height; 
+        height = width * base_image.width / base_image.height; 
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        drawGrid(numElements);
+        //context.drawImage(base_image, startX, startY, width, height); //void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+      }
+    });
+  } );
+    setTimeout(function(){
+      width=$('#slider').slider("option", "value");
+    },200);
+
+  base_image.onload = function(){
+    drawGrid(8);
   }
 }
