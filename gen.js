@@ -3,12 +3,11 @@ context = canvas.getContext('2d');
 
   //$("#slider").slider('option',{min: 0, max: 500});
 
-//make_base();
-display_image()
-var width=100;
+make_base();
+//display_image()
 function display_image()
 {
-
+  var width;
   $( function() {
     var handle = $( "#custom-handle" );
     $( "#slider" ).slider({
@@ -37,14 +36,7 @@ function display_image()
   startX=50;
   startY=50;
   height=100;
-  //width=100;
-  /*
-  while(){
-    //while slider does not exist, wait 1000ms to try slider option
-
-  }
-  */
-  //height = width * base_image.width / base_image.height; 
+  width=100;
   base_image.onload = function(){
       context.drawImage(base_image, startX, startY, height, width);
   }
@@ -55,11 +47,13 @@ function display_image()
 
 function make_base()
 {
+  document.getElementById('canvas').width = 754;
+  document.getElementById('canvas').height = 740;
   base_image = new Image();
   base_image.src = 'goose.png';
   context.save();
   rotate = 0;
-  numElements = 7;
+  numElements = 8;
   numRows = numElements;
   numColumns = numElements;
   //numRows = 4;
@@ -80,7 +74,7 @@ function make_base()
         context.translate(startX + .5*width, startY + .5*height); //x + .5*width, y + .5*height
         context.rotate((Math.PI / 180) * rotate); // rotate
         context.translate(-1 * (startX + .5*width), -1 * (startY + .5*height)); //x + .5*width, y + .5*height
-        context.drawImage(base_image, startX, startY, 100, width);
+        context.drawImage(base_image, startX, startY, width, height);
         context.restore();
         context.save();
         console.log(`startX = ${startX}`);
