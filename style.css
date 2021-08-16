@@ -1,0 +1,16 @@
+#slider{
+
+}
+.ui-slider-horizontal {
+    /*height: 8px;*/
+    /*width: 100px;*/
+}
+
+  #custom-handle {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+  }
