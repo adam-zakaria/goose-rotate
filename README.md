@@ -23,4 +23,10 @@ To-do
 ###
 *Apply filters to the geese
     -glitch them?
+    -https://github.com/aferriss/p5jsShaderExamples/
 *Do the automatic spacing
+
+
+blur is working in blur.js, but not gen.js. 
+I was having trouble drawing goose png for a while, but now it's working after using this drawImage prototype. 
+    ctx.drawImage(image,0,0,canvas.width,canvas.height);

@@ -1,5 +1,7 @@
 var canvas = document.getElementById('canvas'),
 context = canvas.getContext('2d');
+context.filter = 'blur(4px)';
+
 
   //$("#slider").slider('option',{min: 0, max: 500});
 
@@ -22,6 +24,7 @@ function display_image()
         width = ui.value;
         height = width * base_image.width / base_image.height; 
         context.clearRect(0, 0, canvas.width, canvas.height);
+        context.filter = 'blur(4px)';
         context.drawImage(base_image, startX, startY, width, height); //void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
       }
@@ -42,6 +45,24 @@ function display_image()
   }
 }
 
+createBlurSlider();
+function createBlurSlider(){
+  $( function() {
+    //var handle = $( "#custom-handle" );
+    $( "#slider-blur" ).slider({
+      min: 100,
+      max: 500,
+      create: function() {
+        handle.text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        //handle.text( ui.value );
+
+      }
+    });
+  } );
+
+}
 
 
 
